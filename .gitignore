@@ -1,0 +1,17 @@
+# Compiled C++ files
+*.o
+*.out
+*.exe
+
+# Build directories
+build/
+bin/
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
