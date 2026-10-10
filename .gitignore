@@ -1,0 +1,55 @@
+# Compiled executables
+
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.so
+*.dll
+
+# Build output
+
+build/
+cmake-build-*/
+out/
+
+# CMake generated files
+
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Debugging files
+
+*.pdb
+*.ilk
+
+# IDE settings
+
+.vscode/
+.idea/
+
+# Operating system files
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+
+*.log
+*.tmp
+
+# Test output and generated mazes
+
+test-results/
+generated-mazes/
+
+# Environment and local configuration
+
+.env
+.env.*
+!.env.example
