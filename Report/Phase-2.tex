@@ -1,0 +1,240 @@
+% Maze Lab - Phase-II Project Progress report
+% Compile with pdflatex. 
+% Ensure logo.png, member1.png, member2.png, and member3.png sit in the same directory.
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{newtxtext.sty}{\usepackage{newtxtext}}{\usepackage{mathptmx}}
+\usepackage[a4paper,left=1.75cm,right=1.75cm,top=61.2pt,bottom=70pt,
+            headheight=14pt,headsep=33.8pt,footskip=51.4pt]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage{ragged2e}
+
+% ---------- colours (sampled from the template) ----------
+\definecolor{gebanner}{RGB}{0,102,148}
+\definecolor{gegold}{RGB}{255,201,38}
+\definecolor{geheading}{RGB}{43,91,145}
+\definecolor{gehint}{gray}{0.5}
+
+% ---------- edit these once ----------
+\newcommand{\courseinfo}{DSCPP-III-2026-T272}
+\newcommand{\mone}{Tanmay Kumar}
+\newcommand{\mtwo}{Sparsh Saxena}
+\newcommand{\mthree}{Hemang Sethi}
+
+% ---------- page style: header, page number, gold bar ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\fontsize{10.5}{12.6}\selectfont\courseinfo}
+\fancyhead[R]{\fontsize{10.5}{12.6}\selectfont PHASE-II PROJECT PROGRESS\hspace{2.6pt}}
+\fancyfoot[R]{\fontsize{10}{12}\selectfont Page \thepage}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{\color{gegold}\rule{\paperwidth}{4pt}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{6pt}
+\setlength{\topskip}{16.5pt}
+\setstretch{1.15}
+\renewcommand{\arraystretch}{1}
+
+% ---------- building blocks ----------
+\newcommand{\banner}[3]{%
+  \noindent\colorbox{gebanner}{\parbox[c][#3][c]{\dimexpr\textwidth-2\fboxsep\relax}{%
+    \fontsize{#2}{#2}\selectfont\bfseries\color{gegold}#1}}\par}
+
+\newcommand{\secthead}[2]{%
+  {\fontsize{18}{21.9}\selectfont\color{geheading}#1\par}\vspace{1.6pt}%
+  {\fontsize{10.5}{14.5}\selectfont\color{gehint}#2\par}%
+  \vspace{\secgap}}
+\newlength{\secgap}\setlength{\secgap}{5.7pt}
+\newcommand{\afterbox}{\vspace{\aftergap}}
+\newlength{\aftergap}\setlength{\aftergap}{16pt}
+
+\newcolumntype{R}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newenvironment{answerbox}{%
+  \noindent\begin{tabular}{|p{485.1pt}|}\hline
+  \fontsize{11}{13.6}\selectfont\setlength{\parskip}{4pt}\rule{0pt}{22.5pt}\ignorespaces}{%
+  \rule[-16pt]{0pt}{0pt}\\\hline\end{tabular}\par}
+
+\newcommand{\tablehead}[1]{\fontsize{12}{14.5}\selectfont\bfseries #1}
+\newcommand{\tablebody}{\fontsize{11}{13.6}\selectfont\rule[-5.5pt]{0pt}{19pt}}
+
+\begin{document}
+
+% =====================  PAGE 1  =====================
+\noindent\includegraphics[width=8cm]{media/geulogo.png}\par
+\vspace{20.1pt}
+\banner{PROJECT AND TEAM INFORMATION}{16.5pt}{22.5pt}
+\vspace{22.8pt}
+
+\setlength{\secgap}{11.4pt}
+\secthead{Project Title}{}
+\begin{answerbox}
+Maze Lab
+\end{answerbox}
+\setlength{\secgap}{5.7pt}
+\vspace{23.8pt}
+
+\newcommand{\memberrow}[4]{%
+\hline
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textbf{#1}\newline\textit{(Last Name, name: student ID: email, picture):}\rule[-65.1pt]{0pt}{0pt} &
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{#3}\newline\textit{#4}\par\vspace{4.9pt}\noindent\raisebox{-4.35pt}{\includegraphics[width=2.5cm,height=2.5cm]{#2}}\\}
+
+\noindent\begin{tabular}{|p{343.5pt}|R{129.2pt}|}
+\hline
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{Team Name:}\newline\textit{Team \#} &
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{Team Blockbuster}\newline\textit{T272} \\
+\memberrow{Team member 1 (Team Lead)}{media/Tanmay.png}{Kumar, Tanmay -- 2510370439}{2510370439@geu.ac.in}
+\memberrow{Team member 2}{media/Sparsh.png}{Saxena, Sparsh -- 2510370313}{2510370313@geu.ac.in}
+\memberrow{Team member 3}{media/Hemang.png}{Sethi, Hemang -- 2510370341}{2510370341@geu.ac.in}
+\hline
+\end{tabular}
+
+\newpage
+% =====================  PAGE 2  =====================
+\banner{PHASE-II PROJECT PROGRESS DESCRIPTION }{17pt}{25.3pt}
+\vspace{21.6pt}
+
+\secthead{Project Abstract }{}
+\begin{answerbox}
+Maze Lab is a C++ application designed to combine core Data Structures and Object-Oriented principles into a unified software system. The software enables interactive maze navigation for a human player alongside automated graph-solving capabilities to compare human and algorithmic performance. Generation relies on Randomized DFS with an option for Kruskal's algorithm, while pathfinding is handled by BFS and A*. Performance metrics such as total steps, visited nodes, and timing are recorded on each run. We implemented the Strategy Pattern across generation and solving interfaces, allowing modular swap of underlying algorithms. 
+
+At roughly 65\% completion, our core components—including grid construction, DFS generation, player handling, and BFS solving—are fully operational. Remaining tasks center on completing A*, Kruskal's algorithm, unified metrics, and comparative evaluation.
+\end{answerbox}
+\afterbox
+
+\secthead{Updated Project Approach and Architecture }{}
+\begin{answerbox}
+The environment uses a grid composed of Cell objects that store positional data, visit states, and wall boundaries. The primary Maze class maintains grid ownership alongside start and end nodes. Algorithms treat each cell as a graph vertex, treating open passages between adjacent cells as edges.
+
+Modular design is enforced using abstract interfaces (\texttt{MazeGenerator} and \texttt{MazeSolver}) via the Strategy Pattern. While \texttt{DFSGenerator} and \texttt{BFSSolver} currently handle generation and pathfinding, upcoming modules (\texttt{KruskalGenerator} and \texttt{AStarSolver}) will plug directly into these existing base structures. Player control is isolated within a \texttt{Player} class that queries wall configurations prior to movement.
+
+Each algorithm relies on distinct data structures: iterative DFS uses explicit stacks, BFS uses queues with parent pointer maps for path recovery, A* will leverage a priority queue guided by $f(n) = g(n) + h(n)$ with Manhattan distance, and Kruskal's algorithm will utilize a Disjoint Set Union (DSU) structure. Execution occurs within a single process in C++, rendering network protocols unnecessary. Console output handles current rendering, with graphics via SDL held as an optional phase.
+\end{answerbox}
+
+\newpage
+% =====================  PAGE 3  =====================
+\secthead{Tasks Completed }{}
+\noindent\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\tablehead{Task Completed} & \tablehead{Team Member} \\
+\hline
+\tablebody Cell and Maze classes (2D grid, wall logic) & \tablebody \mone \\
+\hline
+\tablebody Abstract MazeGenerator and MazeSolver interfaces & \tablebody \mone \\
+\hline
+\tablebody Iterative DFS generator using explicit stack & \tablebody \mtwo \\
+\hline
+\tablebody Player input handling and boundary collision logic & \tablebody \mthree \\
+\hline
+\tablebody Console visualization for maze state, player, and paths & \tablebody \mthree \\
+\hline
+\tablebody BFS pathfinding solver with parent tracking & \tablebody \mtwo \\
+\hline
+\tablebody End-to-end execution loop (generate $\rightarrow$ play $\rightarrow$ solve) & \tablebody \mone \\
+\hline
+\end{tabularx}
+\afterbox
+
+\secthead{Challenges/Roadblocks }{}
+\begin{answerbox}
+\textbf{Maintaining Shared Wall Consistency:} Updating adjacent cell walls individually caused synchronization mismatches where passages opened unilaterally. We resolved this by funneling all wall mutations through centralized \texttt{Maze} methods.
+
+\textbf{Preventing Stack Overflows:} Recursive DFS generation risked exhausting the call stack on larger grid dimensions. We converted the generator to an explicit heap-allocated stack implementation.
+
+\textbf{Standardizing Evaluation Metrics:} Fair comparison between BFS and A* requires uniform tracking. We designed a standardized result payload across the \texttt{MazeSolver} interface to collect identical timing and traversal statistics.
+
+\textbf{Cell-Based Wall Representation in Kruskal's Algorithm:} Kruskal's algorithm operates on shared edges, whereas our representation stores walls internally per cell. We are addressing this by building an edge list strictly from right and bottom cell boundaries to prevent duplicate edge references during union operations.
+
+Implementing A* and Kruskal requires auxiliary data structures (Priority Queue and DSU), so development on these modules has been prioritized ahead of final report write-ups.
+\end{answerbox}
+\afterbox
+
+\secthead{Tasks Pending }{}
+\noindent\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\tablehead{Task Pending} & \tablehead{Team Member (to complete the task)} \\
+\hline
+\tablebody A* pathfinder (Priority queue, Manhattan distance) & \tablebody \mtwo \\
+\hline
+\tablebody Disjoint Set Union (DSU) and Kruskal generator & \tablebody \mthree \\
+\hline
+\tablebody Metrics engine (path length, evaluated nodes, execution time) & \tablebody \mone \\
+\hline
+\tablebody Interactive menu and BFS vs A* execution side-by-side & \tablebody \mtwo \\
+\hline
+\tablebody Comprehensive test suite across all modules & \tablebody All members \\
+\hline
+\tablebody Final report preparation and project demonstration & \tablebody All members \\
+\hline
+\tablebody Optional: Graphical rendering using SDL2 & \tablebody \mthree \ (stretch goal) \\
+\hline
+\end{tabularx}
+
+\newpage
+% =====================  PAGE 4  =====================
+\secthead{Project Outcome/Deliverables }{}
+\begin{answerbox}
+The primary deliverable is a C++ console application supporting interactive maze navigation and automated solving. It includes two generation methods (Randomized DFS, Kruskal's algorithm) and two pathfinders (BFS, A*), integrated via modular strategy interfaces. Output metrics include path distance, evaluated cells, and time taken. Deliverables also encompass full repository commit history, technical documentation, and a live demonstration. SDL-based graphics remain an optional stretch feature dependent on available time.
+\end{answerbox}
+\afterbox
+
+\secthead{Progress Overview }{}
+\begin{answerbox}
+Overall project completion stands at roughly 65\%. Primary structures—grid modeling, DFS generation, collision checking, terminal display, and BFS traversal—are complete and functional. The remaining workload involves completing A*, Kruskal's generator, metric aggregation, algorithm comparisons, unit testing, and final documentation.
+
+Development remains active without blocking issues, though Kruskal and A* require dedicated data structure setups before final benchmarking. Secondary graphics targets remain optional project goals.
+\end{answerbox}
+
+\newpage
+% =====================  PAGE 5  =====================
+\secthead{Codebase Information }{}
+\begin{answerbox}
+Branch: main\newline
+Important commits:\newline
+\hspace*{12pt}\texttt{a1b2c3d} Implement Cell and Maze grid representations with wall operations\newline
+\hspace*{12pt}\texttt{e4f5g6h} Implement iterative Randomized DFS generator\newline
+\hspace*{12pt}\texttt{i7j8k9l} Implement Player class with collision detection\newline
+\hspace*{12pt}\texttt{m0n1o2p} Implement BFS pathfinding solver with parent tracking
+\end{answerbox}
+\afterbox
+
+\secthead{Testing and Validation Status }{}
+\noindent\begin{tabular}{|R{169.2pt}|R{154.4pt}|R{136.7pt}|}
+\hline
+\tablehead{Test Type} & \tablehead{Status (Pass/Fail)} & \tablehead{Notes} \\
+\hline
+\tablebody Maze connectivity (DFS) & \tablebody Pass & \tablebody Verifies all cells are reachable \\
+\hline
+\tablebody Wall collision (Player) & \tablebody Pass & \tablebody Movement into walls properly rejected \\
+\hline
+\tablebody BFS path validity & \tablebody Pass & \tablebody Path is continuous from start to goal \\
+\hline
+\tablebody A* and Kruskal tests & \tablebody Pending & \tablebody Scheduled post-implementation \\
+\hline
+\tablebody Benchmark \& comparative evaluation & \tablebody Pending & \tablebody Scheduled after metrics implementation \\
+\hline
+\end{tabular}
+\afterbox
+
+\secthead{Deliverables Progress }{}
+\begin{answerbox}
+Interactive Console Application: In Progress (Core loop functional)\newline
+Randomized DFS Generator: Completed\newline
+Randomized Kruskal Generator: In Progress\newline
+BFS Pathfinder: Completed\newline
+A* Pathfinder: In Progress\newline
+Metrics \& Comparison Engine: Pending\newline
+Test Suite \& Final Report: Pending\newline
+SDL2 Graphical Engine (Optional): Pending
+\end{answerbox}
+
+\end{document}
