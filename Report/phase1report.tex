@@ -1,6 +1,6 @@
 % Maze Lab - Project Proposal Report (Phase-I)
-% Compile with pdflatex. 
-% Ensure logo.png, member1.png, member2.png, and member3.png sit in the same directory.
+% Location in repository: Report/Phase1_Report.tex
+% Ensure media files exist in ../media/ (geulogo.png, Tanmay.png, Sparsh.png, Hemang.png)
 
 \documentclass[12pt,a4paper]{article}
 
@@ -71,7 +71,7 @@
 \begin{document}
 
 % =====================  PAGE 1  =====================
-\noindent\includegraphics[width=8cm]{logo.png}\par
+\noindent\includegraphics[width=8cm]{../media/geulogo.png}\par
 \vspace{20.1pt}
 \banner{PROJECT AND TEAM INFORMATION}{16.5pt}{22.5pt}
 \vspace{22.8pt}
@@ -88,9 +88,9 @@ Maze Lab: Interactive Maze Generation and Comparative Algorithmic Pathfinding
 \hline
 \fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{Team Name:}\newline\textit{Team \#} &
 \fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{Team Blockbuster}\newline\textit{T272} \\
-\memberrow{Team member 1 (Team Lead)}{member1.png}{Kumar, Tanmay -- 2510370439}{2510370439@geu.ac.in}
-\memberrow{Team member 2}{member2.png}{Saxena, Sparsh -- 2510370313}{2510370313@geu.ac.in}
-\memberrow{Team member 3}{member3.png}{Sethi, Hemang -- 2510370341}{2510370341@geu.ac.in}
+\memberrow{Team member 1 (Team Lead)}{../media/Tanmay.png}{Kumar, Tanmay -- 2510370439}{2510370439@geu.ac.in}
+\memberrow{Team member 2}{../media/Sparsh.png}{Saxena, Sparsh -- 2510370313}{2510370313@geu.ac.in}
+\memberrow{Team member 3}{../media/Hemang.png}{Sethi, Hemang -- 2510370341}{2510370341@geu.ac.in}
 \hline
 \end{tabular}
 
@@ -101,38 +101,38 @@ Maze Lab: Interactive Maze Generation and Comparative Algorithmic Pathfinding
 
 \secthead{Motivation (1 pt)}{(Describe the problem you want to solve and why it is important. Max 300 words).}
 \begin{answerbox}
-Most core computer science courses teach data structures and algorithms through standalone coding tasks or static textbook diagrams[cite: 16]. Consequently, students often struggle to grasp how components like graph traversals, disjoint sets, or priority queues interact inside a single software application[cite: 16].
+Most core computer science courses teach data structures and algorithms through standalone coding tasks or static textbook diagrams. Consequently, students often struggle to grasp how components like graph traversals, disjoint sets, or priority queues interact inside a single software application.
 
-Maze Lab directly addresses this by offering a hands-on environment where players first navigate a generated maze manually and then evaluate their path against automated solvers[cite: 16]. Combining object-oriented system design with graph theory gives learners a direct, practical look at runtime performance, memory overhead, and heuristic search behavior[cite: 16].
+Maze Lab directly addresses this by offering a hands-on environment where players first navigate a generated maze manually and then evaluate their path against automated solvers. Combining object-oriented system design with graph theory gives learners a direct, practical look at runtime performance, memory overhead, and heuristic search behavior.
 \end{answerbox}
 \afterbox
 
 \secthead{State of the Art / Current solution (1 pt)}{(Describe how the problem is solved today (if it is). Max 200 words).}
 \begin{answerbox}
-Current learning tools usually split into simple text-only programs or web-based pathfinding visualizers[cite: 16]. Text exercises lack clear graphic feedback, while web visualizers rarely let users control a character through the maze[cite: 16]. Additionally, many existing codebases hard-code their algorithms, making it tricky to add or swap new solvers[cite: 16]. Maze Lab solves these issues by combining player controls with graph solvers using a clean, interface-driven C++ layout[cite: 16].
+Current learning tools usually split into simple text-only programs or web-based pathfinding visualizers. Text exercises lack clear graphic feedback, while web visualizers rarely let users control a character through the maze. Additionally, many existing codebases hard-code their algorithms, making it tricky to add or swap new solvers. Maze Lab solves these issues by combining player controls with graph solvers using a clean, interface-driven C++ layout.
 \end{answerbox}
 \afterbox
 
 \secthead{Project Goals and Milestones (2 pts)}{(Describe the project general goals. Include initial milestones as well any other milestones. Max 300 words).}
 \begin{answerbox}
-Our main goal is to build a flexible C++ application that generates valid mazes, supports manual player controls, and compares automated solving algorithms side by side[cite: 16].
+Our main goal is to build a flexible C++ application that generates valid mazes, supports manual player controls, and compares automated solving algorithms side by side.
 
 Key milestones for implementation:
 \par\vspace{2pt}
-1. \textbf{Architecture Setup:} Define base \texttt{Cell} and \texttt{Maze} models alongside abstract \texttt{MazeGenerator} and \texttt{MazeSolver} interfaces[cite: 16].\newline
-2. \textbf{Maze Generation:} Build an iterative Randomized DFS generator and a Kruskal's algorithm generator backed by Union-Find[cite: 16].\newline
-3. \textbf{Player Mechanics \& Console UI:} Implement player navigation, wall collision detection, and ASCII terminal rendering[cite: 16].\newline
-4. \textbf{Pathfinding Solvers:} Construct BFS and A* pathfinders that collect step counts, visited cell totals, and runtime metrics[cite: 16].\newline
-5. \textbf{Validation \& Delivery:} Perform integration testing across all components, build a side-by-side benchmark mode, and complete final documentation[cite: 16].
+1. \textbf{Architecture Setup:} Define base \texttt{Cell} and \texttt{Maze} models alongside abstract \texttt{MazeGenerator} and \texttt{MazeSolver} interfaces.\newline
+2. \textbf{Maze Generation:} Build an iterative Randomized DFS generator and a Kruskal's algorithm generator backed by Union-Find.\newline
+3. \textbf{Player Mechanics \& Console UI:} Implement player navigation, wall collision detection, and ASCII terminal rendering.\newline
+4. \textbf{Pathfinding Solvers:} Construct BFS and A* pathfinders that collect step counts, visited cell totals, and runtime metrics.\newline
+5. \textbf{Validation \& Delivery:} Perform integration testing across all components, build a side-by-side benchmark mode, and complete final documentation.
 \end{answerbox}
 
 \newpage
 % =====================  PAGE 3  =====================
 \secthead{Project Approach (3 pts)}{(Describe how you plan to articulate and design a solution. Including platforms and technologies that you will use. Max 300 words).}
 \begin{answerbox}
-We are writing the program in C++ with an emphasis on modular object-oriented design[cite: 16]. The maze itself sits in a 2D grid of \texttt{Cell} structures, where removed walls correspond to graph edges[cite: 16].
+We are writing the program in C++ with an emphasis on modular object-oriented design. The maze itself sits in a 2D grid of \texttt{Cell} structures, where removed walls correspond to graph edges.
 
-To keep algorithms decoupled, we use abstract base classes under the Strategy Pattern[cite: 16]. \texttt{MazeGenerator} handles generation, while \texttt{MazeSolver} manages pathfinding[cite: 16]. Maze generation relies on explicit-stack DFS alongside Kruskal's algorithm built on a Disjoint Set Union class[cite: 16, 17]. Pathfinding tasks use BFS for shortest paths and A* guided by Manhattan distance heuristics[cite: 17]. Player logic lives separately in a \texttt{Player} class to verify movement before updating position[cite: 17]. Terminal output handles primary rendering, while SDL graphics remain an optional secondary goal[cite: 17].
+To keep algorithms decoupled, we use abstract base classes under the Strategy Pattern. \texttt{MazeGenerator} handles generation, while \texttt{MazeSolver} manages pathfinding. Maze generation relies on explicit-stack DFS alongside Kruskal's algorithm built on a Disjoint Set Union class. Pathfinding tasks use BFS for shortest paths and A* guided by Manhattan distance heuristics. Player logic lives separately in a \texttt{Player} class to verify movement before updating position. Terminal output handles primary rendering, while SDL graphics remain an optional secondary goal.
 \end{answerbox}
 \afterbox
 
@@ -180,21 +180,21 @@ To keep algorithms decoupled, we use abstract base classes under the Strategy Pa
 
 \secthead{Project Outcome / Deliverables (1 pts)}{(Describe what are the outcomes / deliverables of the project. Max 200 words).}
 \begin{answerbox}
-Key outcomes include a complete C++ terminal program, well-documented source code with clean commit records, automated unit tests, technical project documentation, and a live demonstration comparing human player paths against BFS and A* solutions[cite: 17].
+Key outcomes include a complete C++ terminal program, well-documented source code with clean commit records, automated unit tests, technical project documentation, and a live demonstration comparing human player paths against BFS and A* solutions.
 \end{answerbox}
 \afterbox
 
 \secthead{Assumptions}{(Describe the assumptions (if any) you are making to solve the problem. Max 100 words)}
 \begin{answerbox}
-We assume the maze grid dimensions remain fixed during solving and that generated mazes are always simply connected with no loops[cite: 17]. We also assume the terminal host environment supports standard C++ I/O and ANSI color sequences[cite: 17].
+We assume the maze grid dimensions remain fixed during solving and that generated mazes are always simply connected with no loops. We also assume the terminal host environment supports standard C++ I/O and ANSI color sequences.
 \end{answerbox}
 \afterbox
 
 \secthead{References}{(Provide a list of resources or references you utilised for the completion of this deliverable. You may provide links).}
 \begin{answerbox}
-1. Cormen, T. H., et al. \textit{Introduction to Algorithms}. MIT Press[cite: 17].\newline
-2. Gamma, E., et al. \textit{Design Patterns: Elements of Reusable Object-Oriented Software}. Addison-Wesley[cite: 17].\newline
-3. ISO/IEC C++17 Standard Specifications[cite: 17].
+1. Cormen, T. H., et al. \textit{Introduction to Algorithms}. MIT Press.\newline
+2. Gamma, E., et al. \textit{Design Patterns: Elements of Reusable Object-Oriented Software}. Addison-Wesley.\newline
+3. ISO/IEC C++17 Standard Specifications.
 \end{answerbox}
 
 \end{document}
