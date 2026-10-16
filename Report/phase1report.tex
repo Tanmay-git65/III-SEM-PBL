@@ -1,0 +1,200 @@
+% Maze Lab - Project Proposal Report (Phase-I)
+% Location in repository: Report/Phase1_Report.tex
+% Ensure media files exist in ../media/ (geulogo.png, Tanmay.png, Sparsh.png, Hemang.png)
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{newtxtext.sty}{\usepackage{newtxtext}}{\usepackage{mathptmx}}
+\usepackage[a4paper,left=1.75cm,right=1.75cm,top=61.2pt,bottom=70pt,
+            headheight=14pt,headsep=33.8pt,footskip=51.4pt]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{eso-pic}
+\usepackage{ragged2e}
+
+% ---------- colours (sampled from template) ----------
+\definecolor{gebanner}{RGB}{0,102,148}
+\definecolor{gegold}{RGB}{255,201,38}
+\definecolor{geheading}{RGB}{43,91,145}
+\definecolor{gehint}{gray}{0.5}
+
+% ---------- course & team definitions ----------
+\newcommand{\courseinfo}{DSCPP-III-2026-T272}
+\newcommand{\mone}{Tanmay Kumar}
+\newcommand{\mtwo}{Sparsh Saxena}
+\newcommand{\mthree}{Hemang Sethi}
+
+% ---------- page style: header, page number, gold bar ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\fontsize{10.5}{12.6}\selectfont\courseinfo}
+\fancyhead[R]{\fontsize{10.5}{12.6}\selectfont PROJECT PROPOSAL\hspace{2.6pt}}
+\fancyfoot[R]{\fontsize{10}{12}\selectfont Page \thepage}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{\color{gegold}\rule{\paperwidth}{4pt}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{6pt}
+\setlength{\topskip}{16.5pt}
+\renewcommand{\arraystretch}{1}
+
+% ---------- building blocks ----------
+\newcommand{\banner}[3]{%
+  \noindent\colorbox{gebanner}{\parbox[c][#3][c]{\dimexpr\textwidth-2\fboxsep\relax}{%
+    \fontsize{#2}{#2}\selectfont\bfseries\color{gegold}#1}}\par}
+
+\newcommand{\secthead}[2]{%
+  {\fontsize{18}{21.9}\selectfont\color{geheading}#1\par}\vspace{1.6pt}%
+  {\fontsize{10.5}{14.5}\selectfont\color{gehint}#2\par}%
+  \vspace{\secgap}}
+\newlength{\secgap}\setlength{\secgap}{5.7pt}
+\newcommand{\afterbox}{\vspace{\aftergap}}
+\newlength{\aftergap}\setlength{\aftergap}{16pt}
+
+\newcolumntype{R}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newenvironment{answerbox}{%
+  \noindent\begin{tabular}{|p{485.1pt}|}\hline
+  \fontsize{11}{13.6}\selectfont\setlength{\parskip}{4pt}\rule{0pt}{22.5pt}\ignorespaces}{%
+  \rule[-16pt]{0pt}{0pt}\\\hline\end{tabular}\par}
+
+\newcommand{\memberrow}[4]{%
+\hline
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textbf{#1}\newline\textit{(Last Name, name: student ID: email, picture):}\rule[-65.1pt]{0pt}{0pt} &
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{#3}\newline\textit{#4}\par\vspace{4.9pt}\noindent\raisebox{-4.35pt}{\includegraphics[width=1.5cm,height=1.5cm]{#2}}\\}
+
+\begin{document}
+
+% =====================  PAGE 1  =====================
+\noindent\includegraphics[width=8cm]{../media/geulogo.png}\par
+\vspace{20.1pt}
+\banner{PROJECT AND TEAM INFORMATION}{16.5pt}{22.5pt}
+\vspace{22.8pt}
+
+\setlength{\secgap}{11.4pt}
+\secthead{Project Title}{(Try to choose a catchy title. Max 20 words).}
+\begin{answerbox}
+Maze Lab: Interactive Maze Generation and Comparative Algorithmic Pathfinding
+\end{answerbox}
+\setlength{\secgap}{5.7pt}
+\vspace{23.8pt}
+
+\noindent\begin{tabular}{|p{343.5pt}|R{129.2pt}|}
+\hline
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{Team Name:}\newline\textit{Team \#} &
+\fontsize{12}{14.5}\selectfont\rule{0pt}{22.5pt}\textit{Team Blockbuster}\newline\textit{T272} \\
+\memberrow{Team member 1 (Team Lead)}{../media/Tanmay.png}{Kumar, Tanmay -- 2510370439}{2510370439@geu.ac.in}
+\memberrow{Team member 2}{../media/Sparsh.png}{Saxena, Sparsh -- 2510370313}{2510370313@geu.ac.in}
+\memberrow{Team member 3}{../media/Hemang.png}{Sethi, Hemang -- 2510370341}{2510370341@geu.ac.in}
+\hline
+\end{tabular}
+
+\newpage
+% =====================  PAGE 2  =====================
+\banner{PROPOSAL DESCRIPTION (10 pts)}{17pt}{25.3pt}
+\vspace{21.6pt}
+
+\secthead{Motivation (1 pt)}{(Describe the problem you want to solve and why it is important. Max 300 words).}
+\begin{answerbox}
+Most core computer science courses teach data structures and algorithms through standalone coding tasks or static textbook diagrams. Consequently, students often struggle to grasp how components like graph traversals, disjoint sets, or priority queues interact inside a single software application.
+
+Maze Lab directly addresses this by offering a hands-on environment where players first navigate a generated maze manually and then evaluate their path against automated solvers. Combining object-oriented system design with graph theory gives learners a direct, practical look at runtime performance, memory overhead, and heuristic search behavior.
+\end{answerbox}
+\afterbox
+
+\secthead{State of the Art / Current solution (1 pt)}{(Describe how the problem is solved today (if it is). Max 200 words).}
+\begin{answerbox}
+Current learning tools usually split into simple text-only programs or web-based pathfinding visualizers. Text exercises lack clear graphic feedback, while web visualizers rarely let users control a character through the maze. Additionally, many existing codebases hard-code their algorithms, making it tricky to add or swap new solvers. Maze Lab solves these issues by combining player controls with graph solvers using a clean, interface-driven C++ layout.
+\end{answerbox}
+\afterbox
+
+\secthead{Project Goals and Milestones (2 pts)}{(Describe the project general goals. Include initial milestones as well any other milestones. Max 300 words).}
+\begin{answerbox}
+Our main goal is to build a flexible C++ application that generates valid mazes, supports manual player controls, and compares automated solving algorithms side by side.
+
+Key milestones for implementation:
+\par\vspace{2pt}
+1. \textbf{Architecture Setup:} Define base \texttt{Cell} and \texttt{Maze} models alongside abstract \texttt{MazeGenerator} and \texttt{MazeSolver} interfaces.\newline
+2. \textbf{Maze Generation:} Build an iterative Randomized DFS generator and a Kruskal's algorithm generator backed by Union-Find.\newline
+3. \textbf{Player Mechanics \& Console UI:} Implement player navigation, wall collision detection, and ASCII terminal rendering.\newline
+4. \textbf{Pathfinding Solvers:} Construct BFS and A* pathfinders that collect step counts, visited cell totals, and runtime metrics.\newline
+5. \textbf{Validation \& Delivery:} Perform integration testing across all components, build a side-by-side benchmark mode, and complete final documentation.
+\end{answerbox}
+
+\newpage
+% =====================  PAGE 3  =====================
+\secthead{Project Approach (3 pts)}{(Describe how you plan to articulate and design a solution. Including platforms and technologies that you will use. Max 300 words).}
+\begin{answerbox}
+We are writing the program in C++ with an emphasis on modular object-oriented design. The maze itself sits in a 2D grid of \texttt{Cell} structures, where removed walls correspond to graph edges.
+
+To keep algorithms decoupled, we use abstract base classes under the Strategy Pattern. \texttt{MazeGenerator} handles generation, while \texttt{MazeSolver} manages pathfinding. Maze generation relies on explicit-stack DFS alongside Kruskal's algorithm built on a Disjoint Set Union class. Pathfinding tasks use BFS for shortest paths and A* guided by Manhattan distance heuristics. Player logic lives separately in a \texttt{Player} class to verify movement before updating position. Terminal output handles primary rendering, while SDL graphics remain an optional secondary goal.
+\end{answerbox}
+\afterbox
+
+\secthead{System Architecture (High Level Diagram) (2 pts)}{(Provide an overview of the system, identifying its main components and interfaces in the form of a diagram using a tool of your choice).}
+\begin{answerbox}
+\begin{center}
+\setlength{\unitlength}{0.9mm}
+\begin{picture}(130,52)
+  % Outer system boundary
+  \put(0,0){\line(1,0){130}}
+  \put(0,0){\line(0,1){52}}
+  \put(130,0){\line(0,1){52}}
+  \put(0,52){\line(1,0){130}}
+  
+  % Core Grid / Maze
+  \put(45,34){\framebox(40,12){\shortstack{\textbf{Maze / Grid Module}\\\small(Cell, Grid, Boundaries)}}}
+  
+  % Strategy Interfaces
+  \put(10,18){\framebox(34,10){\shortstack{\textbf{<<interface>>}\\\textbf{MazeGenerator}}}}
+  \put(86,18){\framebox(34,10){\shortstack{\textbf{<<interface>>}\\\textbf{MazeSolver}}}}
+  
+  % Concrete Generators
+  \put(5,2){\framebox(20,8){\small DFSGen}}
+  \put(27,2){\framebox(20,8){\small KruskalGen}}
+  
+  % Concrete Solvers
+  \put(83,2){\framebox(20,8){\small BFSSolver}}
+  \put(105,2){\framebox(20,8){\small AStarSolver}}
+  
+  % Player & UI
+  \put(52,18){\framebox(26,10){\shortstack{\textbf{Player / UI}\\\small(Terminal Render)}}}
+  
+  % Connectors
+  \put(27,28){\line(2,1){18}}
+  \put(103,28){\line(-2,1){18}}
+  \put(15,12){\line(0,1){6}}
+  \put(37,12){\line(-1,1){6}}
+  \put(93,12){\line(0,1){6}}
+  \put(115,12){\line(-1,1){6}}
+  \put(65,28){\line(0,1){6}}
+\end{picture}
+\end{center}
+\end{answerbox}
+\afterbox
+
+\secthead{Project Outcome / Deliverables (1 pts)}{(Describe what are the outcomes / deliverables of the project. Max 200 words).}
+\begin{answerbox}
+Key outcomes include a complete C++ terminal program, well-documented source code with clean commit records, automated unit tests, technical project documentation, and a live demonstration comparing human player paths against BFS and A* solutions.
+\end{answerbox}
+\afterbox
+
+\secthead{Assumptions}{(Describe the assumptions (if any) you are making to solve the problem. Max 100 words)}
+\begin{answerbox}
+We assume the maze grid dimensions remain fixed during solving and that generated mazes are always simply connected with no loops. We also assume the terminal host environment supports standard C++ I/O and ANSI color sequences.
+\end{answerbox}
+\afterbox
+
+\secthead{References}{(Provide a list of resources or references you utilised for the completion of this deliverable. You may provide links).}
+\begin{answerbox}
+1. Cormen, T. H., et al. \textit{Introduction to Algorithms}. MIT Press.\newline
+2. Gamma, E., et al. \textit{Design Patterns: Elements of Reusable Object-Oriented Software}. Addison-Wesley.\newline
+3. ISO/IEC C++17 Standard Specifications.
+\end{answerbox}
+
+\end{document}
