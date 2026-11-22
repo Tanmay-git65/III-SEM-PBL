@@ -92,9 +92,19 @@ inline bool keyToDirection(char key, Direction& dir) {
     return false;
 }
 
-inline std::string formatMicroseconds(double value) {
+inline std::string oneDecimal(double value) {
     char buffer[32];
-    std::snprintf(buffer, sizeof(buffer), "%.1f us", value);
+    std::snprintf(buffer, sizeof(buffer), "%.1f", value);
+    return buffer;
+}
+
+inline std::string formatMicroseconds(double value) {
+    return oneDecimal(value) + " us";
+}
+
+inline std::string tableRow(const std::string& label, const std::string& bfs, const std::string& aStar) {
+    char buffer[128];
+    std::snprintf(buffer, sizeof(buffer), "| %-16s | %10s | %10s |\n", label.c_str(), bfs.c_str(), aStar.c_str());
     return buffer;
 }
 
@@ -123,14 +133,15 @@ public:
         if (!mazeIsReady()) return;
         SolveResult bfs = session.bfsSolver.solve(session.maze);
         SolveResult aStar = session.aStarSolver.solve(session.maze);
-        std::printf("\n+------------------+------------+------------+\n");
-        std::printf("| %-16s | %10s | %10s |\n", "Metric", "BFS", "A*");
-        std::printf("+------------------+------------+------------+\n");
-        std::printf("| %-16s | %10s | %10s |\n", "Path found", bfs.found ? "Yes" : "No", aStar.found ? "Yes" : "No");
-        std::printf("| %-16s | %10d | %10d |\n", "Path length", bfs.steps(), aStar.steps());
-        std::printf("| %-16s | %10d | %10d |\n", "Cells expanded", bfs.cellsExpanded(), aStar.cellsExpanded());
-        std::printf("| %-16s | %10s | %10s |\n", "Time", formatMicroseconds(bfs.elapsedMicroseconds).c_str(), formatMicroseconds(aStar.elapsedMicroseconds).c_str());
-        std::printf("+------------------+------------+------------+\n");
+        const std::string line = "+------------------+------------+------------+\n";
+        std::cout << '\n' << line;
+        std::cout << tableRow("Metric", "BFS", "A*");
+        std::cout << line;
+        std::cout << tableRow("Path found", bfs.found ? "Yes" : "No", aStar.found ? "Yes" : "No");
+        std::cout << tableRow("Path length", std::to_string(bfs.steps()), std::to_string(aStar.steps()));
+        std::cout << tableRow("Cells expanded", std::to_string(bfs.cellsExpanded()), std::to_string(aStar.cellsExpanded()));
+        std::cout << tableRow("Time", formatMicroseconds(bfs.elapsedMicroseconds), formatMicroseconds(aStar.elapsedMicroseconds));
+        std::cout << line;
         if (bfs.steps() == aStar.steps())
             std::cout << "Both found a shortest path of the same length.\n";
         int saved = bfs.cellsExpanded() - aStar.cellsExpanded();
@@ -163,8 +174,10 @@ public:
         if (player.hasReached(maze.end())) {
             renderer.draw(maze, {}, player.position());
             int shortest = session.bfsSolver.solve(maze).steps();
-            std::printf("You reached the exit in %d moves and %.1f seconds.\n", player.moveCount(), player.secondsElapsed());
-            std::printf("Shortest path: %d moves. Efficiency: %.0f%%\n", shortest, 100.0 * shortest / player.moveCount());
+            int efficiency = (int)(100.0 * shortest / player.moveCount() + 0.5);
+            std::cout << "You reached the exit in " << player.moveCount() << " moves and "
+                      << oneDecimal(player.secondsElapsed()) << " seconds.\n";
+            std::cout << "Shortest path: " << shortest << " moves. Efficiency: " << efficiency << "%\n";
         } else {
             std::cout << "Game ended after " << player.moveCount() << " moves.\n";
         }

@@ -48,9 +48,9 @@ operating system's own window functions.
 2. HOW TO BUILD AND RUN
 ---------------------------------------------------------------------
 
-Open PowerShell in the project folder:
+Open PowerShell in the src_code folder of your copy of the repo, e.g.:
 
-    cd "D:\Projects\PBL SEM 3\src_code"
+    cd III-SEM-PBL\src_code
 
 Build (needed the first time and after every edit):
 
@@ -73,7 +73,7 @@ Window controls:
     W A S D    move (arrow keys also work); Esc or Q stops playing
     4 / 5      solve with BFS / A*
     6          compare BFS and A*
-    8          run validation tests
+    7          run validation tests (option 8 in the console menu)
     - / +      buttons that change rows and columns
 
 Console controls: type the menu number and press Enter. In play mode
@@ -83,8 +83,7 @@ Problems:
   "g++ is not recognized"  g++ is not on PATH. It is installed in
                            C:\mingw64\bin on the development machine.
   Change does not appear   you did not rebuild after editing.
-  Different program opens  you are in the parent folder. Its main.cpp
-                           is an older, separate program.
+  "main.cpp: No such file" you are not inside the src_code folder.
 
 
 ---------------------------------------------------------------------
@@ -511,7 +510,13 @@ Helper functions:
                             number in range; returns 0 if input ends
   waitForEnter()            "Press Enter to continue..."
   keyToDirection(key, dir)  turn KEY_UP / KEY_LEFT / ... into a Direction
+  oneDecimal(x)             e.g. 13.74 -> "13.7"
   formatMicroseconds(x)     e.g. 13.7 -> "13.7 us"
+  tableRow(label, bfs, aStar)  one line of the comparison table, with the
+                            columns padded to fixed widths so they line up
+  All console output goes through std::cout. Numbers are formatted into a
+  string first (with snprintf) and then printed with cout. Mixing printf
+  and cout can print lines in the wrong order when output is redirected.
 
 class ConsoleApp   one function per menu option
   generateAndShow(g)  generate with g and print the maze       (1, 2)
@@ -551,7 +556,7 @@ class GuiApp
   onClick(x, y)     finds which button was clicked and runs its action
   onArrow(dir)      arrow key: moves the player if playing
   onKeyChar(key)    letter/number key. While playing, movement keys and
-                    Q/Esc are handled first. Otherwise 1-6 and 8 act like
+                    Q/Esc are handled first. Otherwise 1-7 act like
                     the buttons.
   runAction(id)     the single place where each button's action is
                     chosen. Any action other than Play stops play mode.
@@ -760,7 +765,7 @@ Tips:
 8. THE VALIDATION TESTS
 ---------------------------------------------------------------------
 
-Run with button "8. Run validation tests" in the window, or option 8 in
+Run with button "7. Run validation tests" (key 7) in the window, or option 8 in
 the console. Each test runs on fixed sizes and seeds, so results are
 repeatable.
 
@@ -825,9 +830,6 @@ Example output line:
 10. KNOWN LIMITATIONS AND GOTCHAS
 ---------------------------------------------------------------------
 
-  - The parent folder (PBL SEM 3) has its own main.cpp. It is an older,
-    separate single-file version. Do not compile both together, and
-    build from inside src_codepHASE3.
   - The window has a fixed size and is not DPI-aware. On screens with
     display scaling, Windows enlarges it and the taskbar may cover the
     bottom. Lower WINDOW_HEIGHT if needed.

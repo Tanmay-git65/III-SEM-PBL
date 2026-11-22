@@ -53,3 +53,7 @@ generated-mazes/
 .env
 .env.*
 !.env.example
+
+# Team-only notes (kept locally, not published)
+
+src_code/CODE_GUIDE.txt

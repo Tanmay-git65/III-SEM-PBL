@@ -110,7 +110,7 @@ public:
             case '4': runAction(ButtonId::SolveBFS); break;
             case '5': runAction(ButtonId::SolveAStar); break;
             case '6': runAction(ButtonId::Compare); break;
-            case '8': runAction(ButtonId::RunTests); break;
+            case '7': runAction(ButtonId::RunTests); break;
         }
     }
 
